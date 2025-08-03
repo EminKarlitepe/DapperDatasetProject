@@ -1,0 +1,506 @@
+@model DapperDatasetProject.DTOs.DashboardStatsDto
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Ana Widget'lar -->
+<div class="row">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.TotalSales.ToString("C")</h3>
+                            <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Toplam Satış</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.TotalOrders.ToString("N0")</h3>
+                            <p class="text-success ml-2 mb-0 font-weight-medium">+8%</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Toplam Sipariş</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.AverageOrderValue.ToString("C")</h3>
+                            <p class="text-danger ml-2 mb-0 font-weight-medium">-2.4%</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-danger">
+                            <span class="mdi mdi-arrow-bottom-left icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Ortalama Sipariş Tutarı</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.TotalCustomers.ToString("N0")</h3>
+                            <p class="text-success ml-2 mb-0 font-weight-medium">+3.5%</p>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-arrow-top-right icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Toplam Müşteri</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- İstatistik Widget'ları -->
+<div class="row">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.AverageItemsPerOrder.ToString("F1")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-info">
+                            <span class="mdi mdi-package-variant icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Ort. Sipariş Başına Ürün</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.UniqueProducts.ToString("N0")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-cube-outline icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Benzersiz Ürün</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.UniqueCategories.ToString("N0")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-primary">
+                            <span class="mdi mdi-tag icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Benzersiz Kategori</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.UniqueBrands.ToString("N0")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-warning">
+                            <span class="mdi mdi-star icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Benzersiz Marka</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Coğrafi Widget'lar -->
+<div class="row">
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.UniqueRegions.ToString("N0")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-info">
+                            <span class="mdi mdi-earth icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Benzersiz Bölge</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="d-flex align-items-center align-self-start">
+                            <h3 class="mb-0">@Model.UniqueCities.ToString("N0")</h3>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="icon icon-box-success">
+                            <span class="mdi mdi-city icon-item"></span>
+                        </div>
+                    </div>
+                </div>
+                <h6 class="text-muted font-weight-normal">Benzersiz Şehir</h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Grafikler -->
+<div class="row">
+    @if (Model.TopCategories.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">En Çok Satılan Kategoriler</h4>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.RegionSales.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bölgeye Göre Satışlar</h4>
+                    <canvas id="regionChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    @if (Model.TopBrands.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">En Çok Satılan Markalar</h4>
+                    <canvas id="brandChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.GenderSales.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Cinsiyete Göre Satışlar</h4>
+                    <canvas id="genderChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    @if (Model.CitySales.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Şehirlere Göre Satışlar</h4>
+                    <canvas id="cityChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+<div class="row">
+    @if (Model.TopProducts.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">En Çok Satılan Ürünler</h4>
+                    <canvas id="productChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.DistrictSales.Any())
+    {
+        <div class="col-lg-6 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">İlçelere Göre Satışlar</h4>
+                    <canvas id="districtChart"></canvas>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Kategori Grafiği
+        @if (Model.TopCategories.Any())
+        {
+            <text>
+            const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+            new Chart(categoryCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopCategories.Select(c => c.Category))),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.TopCategories.Select(c => c.TotalSales))),
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#4BC0C0',
+                            '#9966FF'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+        // Bölge Grafiği
+        @if (Model.RegionSales.Any())
+        {
+            <text>
+            const regionCtx = document.getElementById('regionChart').getContext('2d');
+            new Chart(regionCtx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.RegionSales.Select(r => r.Region))),
+                    datasets: [{
+                        label: 'Satış Tutarı',
+                        data: @Html.Raw(Json.Serialize(Model.RegionSales.Select(r => r.TotalSales))),
+                        backgroundColor: '#36A2EB'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+        // Marka Grafiği
+        @if (Model.TopBrands.Any())
+        {
+            <text>
+            const brandCtx = document.getElementById('brandChart').getContext('2d');
+            new Chart(brandCtx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopBrands.Select(b => b.Brand))),
+                    datasets: [{
+                        label: 'Satış Tutarı',
+                        data: @Html.Raw(Json.Serialize(Model.TopBrands.Select(b => b.TotalSales))),
+                        backgroundColor: '#FFCE56'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+        // Cinsiyet Grafiği
+        @if (Model.GenderSales.Any())
+        {
+            <text>
+            const genderCtx = document.getElementById('genderChart').getContext('2d');
+            new Chart(genderCtx, {
+                type: 'pie',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.GenderSales.Select(g => g.Gender))),
+                    datasets: [{
+                        data: @Html.Raw(Json.Serialize(Model.GenderSales.Select(g => g.TotalSales))),
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB'
+                        ]
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+        // Şehir Grafiği
+        @if (Model.CitySales.Any())
+        {
+            <text>
+            const cityCtx = document.getElementById('cityChart').getContext('2d');
+            new Chart(cityCtx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.CitySales.Select(c => c.City))),
+                    datasets: [{
+                        label: 'Satış Tutarı',
+                        data: @Html.Raw(Json.Serialize(Model.CitySales.Select(c => c.TotalSales))),
+                        backgroundColor: '#4BC0C0'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+
+
+        // Ürün Grafiği
+        @if (Model.TopProducts.Any())
+        {
+            <text>
+            const productCtx = document.getElementById('productChart').getContext('2d');
+            new Chart(productCtx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.TopProducts.Select(p => p.ProductName))),
+                    datasets: [{
+                        label: 'Satış Tutarı',
+                        data: @Html.Raw(Json.Serialize(Model.TopProducts.Select(p => p.TotalSales))),
+                        backgroundColor: '#9966FF'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+
+        // İlçe Grafiği
+        @if (Model.DistrictSales.Any())
+        {
+            <text>
+            const districtCtx = document.getElementById('districtChart').getContext('2d');
+            new Chart(districtCtx, {
+                type: 'bar',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(Model.DistrictSales.Select(d => d.District))),
+                    datasets: [{
+                        label: 'Satış Tutarı',
+                        data: @Html.Raw(Json.Serialize(Model.DistrictSales.Select(d => d.TotalSales))),
+                        backgroundColor: '#4BC0C0'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            </text>
+        }
+    </script>
+}

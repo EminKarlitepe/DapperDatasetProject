@@ -1,0 +1,196 @@
+@model List<DapperDatasetProject.DTOs.SalesDto>
+@{
+    ViewData["Title"] = "Satış Listesi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var filter = ViewBag.Filter;
+}
+
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Satış Listesi</h4>
+                <p class="card-description">Tüm satış verilerini görüntüleyin ve filtreleyin (Maksimum 1000 kayıt)</p>
+                
+                <!-- Filtre Formu -->
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <form method="get" class="form-inline">
+                            <div class="row">
+                                <div class="col-md-2 mb-2">
+                                    <input type="text" name="productName" value="@filter?.productName" placeholder="Ürün Adı" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <input type="text" name="category" value="@filter?.category" placeholder="Kategori" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <input type="text" name="customerName" value="@filter?.customerName" placeholder="Müşteri" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <input type="text" name="region" value="@filter?.region" placeholder="Bölge" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <input type="text" name="city" value="@filter?.city" placeholder="Şehir" class="form-control" />
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <button type="submit" class="btn btn-primary btn-block">
+                                        <i class="mdi mdi-magnify"></i> Filtrele
+                                    </button>
+                                </div>
+                                <div class="col-md-2 mb-2">
+                                    <a href="/Sales/List" class="btn btn-secondary btn-block">
+                                        <i class="mdi mdi-refresh"></i> Temizle
+                                    </a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Sonuç Sayısı -->
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <div class="alert alert-info">
+                            <i class="mdi mdi-information-outline"></i>
+                            Toplam @Model.Count() kayıt bulundu. (Maksimum 1000 kayıt gösteriliyor)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tablo -->
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tarih</th>
+                                <th>Müşteri</th>
+                                <th>Ürün</th>
+                                <th>Kategori</th>
+                                <th>Marka</th>
+                                <th>Miktar</th>
+                                <th>Birim Fiyat</th>
+                                <th>Toplam Fiyat</th>
+                                <th>Bölge</th>
+                                <th>Şehir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <span class="badge badge-info">@item.ID</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">@item.DATE_.ToString("dd.MM.yyyy")</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <img src="~/PurpleAdmin-Free-Admin-Template-1.0.0/assets/images/faces/face1.jpg" alt="profile" class="rounded-circle mr-2" style="width: 30px; height: 30px;">
+                                            <div>
+                                                <div class="font-weight-bold">@item.NAMESURNAME</div>
+                                                <small class="text-muted">@item.USERNAME_</small>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <div class="font-weight-bold">@item.ITEMNAME</div>
+                                            <small class="text-muted">@item.ITEMCODE</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-outline-primary">@item.CATEGORY1</span>
+                                    </td>
+                                    <td>
+                                        <span class="badge badge-outline-secondary">@item.BRAND</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-weight-bold">@item.AMOUNT</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-success">@item.UNITPRICE.ToString("C")</span>
+                                    </td>
+                                    <td>
+                                        <span class="font-weight-bold text-primary">@item.TOTALPRICE.ToString("C")</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">@item.REGION</span>
+                                    </td>
+                                    <td>
+                                        <span class="text-muted">@item.CITY</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- İstatistikler -->
+                <div class="row mt-4">
+                    <div class="col-md-3">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <i class="mdi mdi-currency-usd icon-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Toplam Satış</h6>
+                                        <h4 class="mb-0">@Model.Sum(x => x.TOTALPRICE).ToString("C")</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <i class="mdi mdi-shopping icon-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Toplam Sipariş</h6>
+                                        <h4 class="mb-0">@Model.Count()</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <i class="mdi mdi-account-multiple icon-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Benzersiz Müşteri</h6>
+                                        <h4 class="mb-0">@Model.Select(x => x.NAMESURNAME).Distinct().Count()</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card bg-warning text-white">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center">
+                                    <div class="mr-3">
+                                        <i class="mdi mdi-cube-outline icon-lg"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0">Benzersiz Ürün</h6>
+                                        <h4 class="mb-0">@Model.Select(x => x.ITEMID).Distinct().Count()</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
